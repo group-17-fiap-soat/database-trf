@@ -3,7 +3,7 @@ name: Deploy RDS PostgreSQL via Terraform
 on:
   push:
     branches:
-      - placeholder
+      - main
 
 jobs:
   deploy:
