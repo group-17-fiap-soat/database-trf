@@ -25,7 +25,7 @@ resource "aws_security_group" "sg" {
 resource "aws_security_group" "sg_postgres" {
   name        = "SG-postgres"
   description = "Permite acesso ao PostgreSQL (porta 5432)"
-  vpc_id      = aws_vpc.fastfood.id
+  vpc_id      = var.vpc_id
 
   ingress {
     description = "PostgreSQL"
