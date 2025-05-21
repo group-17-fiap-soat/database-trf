@@ -31,10 +31,12 @@ jobs:
           terraform_version: 1.6.6
 
       - name: Inicializar Terraform com backend S3
-        run: terraform init -backend-config="bucket=terraform-pipeline-bucket-361598269712" \
-          -backend-config="key=rds/terraform.tfstate" \
-          -backend-config="region=us-east-1" \
-          -backend-config="encrypt=true"
+        run: |
+          terraform init \
+            -backend-config="bucket=terraform-pipeline-bucket-361598269712" \
+            -backend-config="key=rds/terraform.tfstate" \
+            -backend-config="region=us-east-1" \
+            -backend-config="encrypt=true"
 
       - name: Validar configuração
         run: terraform validate
