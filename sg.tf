@@ -1,7 +1,7 @@
 resource "aws_security_group" "sg" {
   name        = "SG-allow-all"
   description = "Usado no EKS com 6/7SOAT"
-  vpc_id      = var.vpc_id
+  vpc_id      = data.aws_vpc.selected.id
 
   # Inbound
   ingress {
@@ -25,7 +25,7 @@ resource "aws_security_group" "sg" {
 resource "aws_security_group" "sg_postgres" {
   name        = "SG-postgres"
   description = "Permite acesso ao PostgreSQL (porta 5432)"
-  vpc_id      = var.vpc_id
+  vpc_id      = data.aws_vpc.selected.id
 
   ingress {
     description = "PostgreSQL"

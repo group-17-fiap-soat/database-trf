@@ -11,3 +11,10 @@ data "aws_subnet" "public_2" {
     values = ["fastfood-public-2"]
   }
 }
+
+data "aws_vpc" "selected" {
+  filter {
+    name   = "tag:Name"
+    values = ["fastfood-vpc"]
+  }
+}
