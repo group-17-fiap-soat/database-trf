@@ -1,6 +1,13 @@
+locals {
+  subnet_id_map_public_only = {
+    public-1 = data.aws_subnet.public_1.id
+    public-2 = data.aws_subnet.public_2.id
+  }
+}
+
 resource "aws_db_subnet_group" "rds_subnets" {
   name       = "fastfood-rds-subnet-public-group"
-  subnet_ids = values(local.subnnet_id_map_public_only)
+  subnet_ids = values(local.subnet_id_map_public_only)
 
   tags = {
     Name = "fastfood-rds-subnet-public-group"
@@ -24,12 +31,5 @@ resource "aws_db_instance" "postgres" {
 
   tags = {
     Name = "fastfood-postgres"
-  }
-}
-
-locals {
-  subnet_id_map_public_only = {
-    public-1 = data.aws_subnet.public_1.id
-    public-2 = data.aws_subnet.public_2.id
   }
 }
