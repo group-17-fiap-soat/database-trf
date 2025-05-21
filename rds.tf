@@ -26,3 +26,10 @@ resource "aws_db_instance" "postgres" {
     Name = "fastfood-postgres"
   }
 }
+
+locals {
+  subnet_id_map_public_only = {
+    public-1 = data.aws_subnet.public_1.id
+    public-2 = data.aws_subnet.public_2.id
+  }
+}
