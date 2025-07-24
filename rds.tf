@@ -34,7 +34,7 @@ resource "aws_db_instance" "auth" {
   }
 }
 
-resource "aws_db_instance" "order" {
+resource "aws_db_instance" "order_fastfood" {
   identifier             = "fastfood-order-db"
   engine                 = "postgres"
   engine_version         = "16.6"
