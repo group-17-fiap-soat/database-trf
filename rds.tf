@@ -14,13 +14,13 @@ resource "aws_db_subnet_group" "rds_subnets" {
   }
 }
 
-resource "aws_db_instance" "postgres" {
-  identifier             = "fastfood-db"
+resource "aws_db_instance" "auth" {
+  identifier             = "fastfood-auth-db"
   engine                 = "postgres"
   engine_version         = "16.6"
   instance_class         = "db.t3.micro"
   allocated_storage      = 20
-  db_name                = var.db_name
+  db_name                = "auth"
   username               = var.db_user
   password               = var.db_password
   port                   = 5432
@@ -30,6 +30,46 @@ resource "aws_db_instance" "postgres" {
   skip_final_snapshot    = true
 
   tags = {
-    Name = "fastfood-postgres"
+    Name = "fastfood-auth-db"
+  }
+}
+
+resource "aws_db_instance" "order" {
+  identifier             = "fastfood-order-db"
+  engine                 = "postgres"
+  engine_version         = "16.6"
+  instance_class         = "db.t3.micro"
+  allocated_storage      = 20
+  db_name                = "order"
+  username               = var.db_user
+  password               = var.db_password
+  port                   = 5432
+  publicly_accessible    = true
+  vpc_security_group_ids = [aws_security_group.sg_postgres.id]
+  db_subnet_group_name   = aws_db_subnet_group.rds_subnets.name
+  skip_final_snapshot    = true
+
+  tags = {
+    Name = "fastfood-order-db"
+  }
+}
+
+resource "aws_db_instance" "payment" {
+  identifier             = "fastfood-payment-db"
+  engine                 = "postgres"
+  engine_version         = "16.6"
+  instance_class         = "db.t3.micro"
+  allocated_storage      = 20
+  db_name                = "payment"
+  username               = var.db_user
+  password               = var.db_password
+  port                   = 5432
+  publicly_accessible    = true
+  vpc_security_group_ids = [aws_security_group.sg_postgres.id]
+  db_subnet_group_name   = aws_db_subnet_group.rds_subnets.name
+  skip_final_snapshot    = true
+
+  tags = {
+    Name = "fastfood-payment-db"
   }
 }
