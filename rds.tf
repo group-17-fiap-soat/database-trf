@@ -20,7 +20,7 @@ resource "aws_db_instance" "auth" {
   engine_version         = "16.6"
   instance_class         = "db.t3.micro"
   allocated_storage      = 20
-  db_name                = "fastfood-auth-db"
+  db_name                = "fastfoodAuth"
   username               = var.db_user
   password               = var.db_password
   port                   = 5432
@@ -40,7 +40,7 @@ resource "aws_db_instance" "order" {
   engine_version         = "16.6"
   instance_class         = "db.t3.micro"
   allocated_storage      = 20
-  db_name                = "fastfood-order-db"
+  db_name                = "fastfoodOrder"
   username               = var.db_user
   password               = var.db_password
   port                   = 5432
@@ -60,7 +60,7 @@ resource "aws_db_instance" "payment" {
   engine_version         = "16.6"
   instance_class         = "db.t3.micro"
   allocated_storage      = 20
-  db_name                = "fastfood-payment-db"
+  db_name                = "fastfoodPayment"
   username               = var.db_user
   password               = var.db_password
   port                   = 5432
